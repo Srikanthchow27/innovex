@@ -1,197 +1,180 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
     /* Global styles */
-
-body {
-    background-color: #fcf6f6;
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    position: relative;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-}
-
-/* Top navigation styles */
-
-.topnav {
-    height: 50px;
-    overflow: hidden;
-    background-color: #dfdbdb;
-    margin: 5px;
-    display: flex;
-    align-items: center;
-    box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.2);
-}
-
-#logo {
-    margin-left: 20px;
-    display: flex;
-    align-items: center;
-}
-
-#logo img {
-    width: 30px;
-    height: 30px;
-}
-
-#logo-text {
-    color: #000000;
-    margin-left: 10px;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.navtags {
-    display: flex;
-    flex-grow: 1;
-    justify-content: flex-start; /* Align items to the start (near the logo) */
-    margin-left: 19%; /* Adjust this value to move the links closer or further from the logo */
-}
-
-.navtags a {
-    color: #000000;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    margin: 0 10px;
-}
-
-/* Logo text colors */
-
-#I {
-    color: cadetblue;
-}
-
-#nno {
-    color: darkolivegreen;
-}
-
-#vex {
-    color: rgb(130, 59, 59);
-}
-
-#Hub {
-    color: goldenrod;
-}
-
-/* Picture section styles */
-
-.picture {
-    position: fixed;
-    top: 50%;
-    right: 10%;
-    transform: translateY(-50%);
-    z-index: 10;
-}
-
-.picture img {
-    width: 300px;
-    height: auto;
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-}
-
-/* Background image section styles */
-
-.background-image {
-    margin-top: 45px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 200vh; /* Twice the viewport height to enable scrolling */
-    background-color: #000000;
-    background-size: cover;
-    background-position: center;
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-body.scrolled .background-image {
-    opacity: 1;
-}
-
-/* Content section styles */
-
-#h {
-    font-size: larger;
-    margin-left: 200px;
-    margin-top: 200px;
-    z-index: 2;
-    position: relative;
-}
-
-#p {
-    z-index: 2;
-    position: relative;
-    max-width: 600px;
-    margin-top: 450px;
-    margin-left: 3rem;
-    padding: 20px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-}
-
-/* Media queries for responsive design */
-
-@media (max-width: 1024px) {
-    .navtags {
-        margin-left: 10%; /* Adjust for smaller screens */
+    body {
+        background-color: #fcf6f6;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        position: relative;
+        overflow-x: hidden; /* Prevent horizontal scrolling */
     }
-    .picture {
-        right: 15%; /* Adjust image position for smaller screens */
+    
+    /* Top navigation styles */
+    .topnav {
+        height: 50px;
+        overflow: hidden;
+        background-color: #dfdbdb;
+        margin: 5px;
+        display: flex;
+        align-items: center;
+        box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.2);
     }
-}
-
-@media (max-width: 768px) {
-    #h {
-        margin-left: 20px; /* Adjust for smaller screens */
-        margin-top: 100px; /* Adjust vertical position */
+    
+    #logo {
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
     }
-
-    .picture {
-        right: 5%; /* Adjust image position for smaller screens */
-        top: 80%; /* Adjust vertical position */
+    
+    #logo img {
+        width: 30px;
+        height: 30px;
     }
-
-    #p {
-        margin-top: 20px; /* Adjust vertical position */
-        margin-left: 20px; /* Adjust for smaller screens */
-    }
-}
-
-@media (max-width: 480px) {
+    
     #logo-text {
-        font-size: 16px; /* Reduce logo text size for smaller screens */
+        color: #000000;
+        margin-left: 10px;
+        font-size: 20px;
+        font-weight: bold;
     }
-
+    
     .navtags {
-        flex-direction: column; /* Stack navtags vertically */
-        justify-content: center; /* Center align navtags */
-        align-items: center; /* Center align navtags */
-        margin-left: 0; /* Reset margin for centering */
+        display: flex;
+        flex-grow: 1;
+        justify-content: flex-start; /* Align items to the start (near the logo) */
+        margin-left: 19%; /* Adjust this value to move the links closer or further from the logo */
     }
-
+    
+    .navtags a {
+        color: #000000;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        margin: 0 10px;
+    }
+    
+    /* Logo text colors */
+    #I {
+        color: cadetblue;
+    }
+    
+    #nno {
+        color: darkolivegreen;
+    }
+    
+    #vex {
+        color: rgb(130, 59, 59);
+    }
+    
+    #Hub {
+        color: goldenrod;
+    }
+    
+    /* Picture section styles */
     .picture {
-        right: 5%; /* Adjust image position for smaller screens */
+        position: fixed;
+        top: 50%;
+        right: 5%; /* Adjust as needed */
+        transform: translateY(-50%);
+        z-index: 10;
     }
-
+    
+    .picture img {
+        width: 300px;
+        height: auto;
+        box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+    }
+    
+    /* Background image section styles */
+    .background-image {
+        margin-top: 45px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 200vh; /* Twice the viewport height to enable scrolling */
+        background-color: #000000;
+        background-size: cover;
+        background-position: center;
+        z-index: 1;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+    
+    body.scrolled .background-image {
+        opacity: 1;
+    }
+    
+    /* Content section styles */
     #h {
-        margin-left: 10px; /* Adjust for smaller screens */
-        margin-top: 50px; /* Adjust vertical position */
+        font-size: larger;
+        margin-left: 200px;
+        margin-top: 200px;
+        z-index: 2;
+        position: relative;
     }
-
+    
     #p {
-        margin-left: 10px; /* Adjust for smaller screens */
+        z-index: 2;
+        position: relative;
+        max-width: 600px;
+        margin-top: 450px;
+        margin-left: 3rem;
+        padding: 20px;
+        background-color: #f0f0f0;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
     }
-}
+    
+    /* Media queries for responsive design */
+    @media (max-width: 1024px) {
+        .navtags {
+            margin-left: 10%; /* Adjust for smaller screens */
+        }
+        .picture {
+            right: 5%; /* Adjust image position for smaller screens */
+        }
+    }
+    
+    @media (max-width: 768px) {
+        #h {
+            margin-left: 20px; /* Adjust for smaller screens */
+            margin-top: 100px; /* Adjust vertical position */
+        }
+        .picture {
+            display: none; /* Hide the fixed image on smaller screens */
+        }
+        #p {
+            margin-top: 20px; /* Adjust vertical position */
+            margin-left: 20px; /* Adjust for smaller screens */
+        }
+    }
+    
+    @media (max-width: 480px) {
+        #logo-text {
+            font-size: 16px; /* Reduce logo text size for smaller screens */
+        }
+        .navtags {
+            flex-direction: column; /* Stack navtags vertically */
+            justify-content: center; /* Center align navtags */
+            align-items: center; /* Center align navtags */
+            margin-left: 0; /* Reset margin for centering */
+        }
+        #h {
+            margin-left: 10px; /* Adjust for smaller screens */
+            margin-top: 50px; /* Adjust vertical position */
+        }
+        #p {
+            margin-left: 10px; /* Adjust for smaller screens */
+        }
+    }
 </style>
 </head>
 <body>
@@ -225,19 +208,17 @@ body.scrolled .background-image {
 
 <script>
     // JavaScript for background image opacity on scroll
-
-document.addEventListener('scroll', () => {
-    const scrollPosition = window.scrollY;
-    const windowHeight = window.innerHeight;
-    const halfWindowHeight = windowHeight / 2;
-    
-    if (scrollPosition > halfWindowHeight) {
-        document.body.classList.add('scrolled');
-    } else {
-        document.body.classList.remove('scrolled');
-    }
-});
-
+    document.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY;
+        const halfWindowHeight = window.innerHeight / 2;
+        
+        if (scrollPosition > halfWindowHeight) {
+            document.body.classList.add('scrolled');
+        } else {
+            document.body.classList.remove('scrolled');
+        }
+    });
 </script>
 </body>
 </html>
+
