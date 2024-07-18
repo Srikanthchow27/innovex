@@ -3,51 +3,60 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-    /* Global styles */
     body {
         background-color: #fcf6f6;
         margin: 0;
         font-family: Arial, Helvetica, sans-serif;
         position: relative;
-        overflow-x: hidden; /* Prevent horizontal scrolling */
+        overflow-x: hidden;
     }
-    
-    /* Top navigation styles */
+
     .topnav {
         height: 50px;
         overflow: hidden;
-        background-color: #dfdbdb;
+        background: linear-gradient(90deg, rgba(223, 219, 219, 1) 0%, rgba(200, 200, 200, 1) 100%);
         margin: 5px;
         display: flex;
         align-items: center;
         box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.2);
+        justify-content: space-between;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+        position: relative;
     }
-    
+
     #logo {
         margin-left: 20px;
         display: flex;
         align-items: center;
     }
-    
+
     #logo img {
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
+        transition: transform 0.3s ease-in-out;
     }
-    
+
+    #logo img:hover {
+        transform: rotate(360deg);
+    }
+
     #logo-text {
         color: #000000;
         margin-left: 10px;
-        font-size: 20px;
+        font-size: 24px;
         font-weight: bold;
+        transition: color 0.3s ease-in-out;
     }
-    
+
     .navtags {
         display: flex;
         flex-grow: 1;
-        justify-content: flex-start; /* Align items to the start (near the logo) */
-        margin-left: 19%; /* Adjust this value to move the links closer or further from the logo */
+        justify-content: flex-start;
+        margin-left: 19%;
+        position: relative;
     }
-    
+
     .navtags a {
         color: #000000;
         text-align: center;
@@ -55,49 +64,75 @@
         text-decoration: none;
         font-size: 17px;
         margin: 0 10px;
+        position: relative;
+        overflow: hidden;
+        transition: color 0.3s ease-in-out;
     }
-    
-    /* Logo text colors */
+
+    .navtags a:before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.2);
+        z-index: -1;
+        transition: height 0.3s ease-in-out;
+    }
+
+    .navtags a:hover:before {
+        height: 100%;
+    }
+
+    .navtags a:hover {
+        color: #ffffff;
+    }
+
     #I {
         color: cadetblue;
     }
-    
+
     #nno {
         color: darkolivegreen;
     }
-    
+
     #vex {
         color: rgb(130, 59, 59);
     }
-    
+
     #Hub {
         color: goldenrod;
     }
-    
-    /* Picture section styles */
+
     .picture {
         position: fixed;
         top: 50%;
-        right: 5%; /* Adjust as needed */
+        right: 5%;
         transform: translateY(-50%);
         z-index: 10;
     }
-    
+
     .picture img {
-        width: 300px;
+        width: 100%; /* Adjust to fill the available width */
+        max-width: 300px; /* Limit maximum width */
         height: auto;
         box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
         border-radius: 10px;
+        transition: transform 0.5s ease-in-out;
     }
-    
-    /* Background image section styles */
+
+    .picture img:hover {
+        transform: scale(1.05); /* Scale up slightly on hover */
+    }
+
     .background-image {
         margin-top: 45px;
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        height: 200vh; /* Twice the viewport height to enable scrolling */
+        height: 200vh;
         background-color: #000000;
         background-size: cover;
         background-position: center;
@@ -105,26 +140,35 @@
         opacity: 0;
         transition: opacity 1s ease-in-out;
     }
-    
+
     body.scrolled .background-image {
         opacity: 1;
     }
-    
-    /* Content section styles */
+
     #h {
         font-size: larger;
-        margin-left: 200px;
-        margin-top: 200px;
+        margin-left: 20px;
+        margin-top: 80px;
         z-index: 2;
-        position: relative;
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        color: #ffffff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        transform: translateY(100%);
+        transition: transform 0.5s ease-in-out;
     }
-    
+
+    #h.show {
+        transform: translateY(0);
+    }
+
     #p {
         z-index: 2;
         position: relative;
         max-width: 600px;
-        margin-top: 450px;
-        margin-left: 3rem;
+        margin-top: 50px;
+        margin-left: 200px;
         padding: 20px;
         background-color: #f0f0f0;
         border-radius: 10px;
@@ -132,63 +176,113 @@
         font-family: Arial, sans-serif;
         line-height: 1.6;
     }
-    
-    /* Media queries for responsive design */
-    @media (max-width: 1024px) {
+
+    .topnav .icon {
+        display: none;
+    }
+
+    @media screen and (max-width: 768px) {
         .navtags {
-            margin-left: 10%; /* Adjust for smaller screens */
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin-left: 0;
         }
-        .picture {
-            right: 5%; /* Adjust image position for smaller screens */
+
+        .topnav.responsive .navtags {
+            display: flex;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 100%;
+            background-color: #dfdbdb;
+            z-index: 2;
         }
-    }
-    
-    @media (max-width: 768px) {
+
+        .navtags a {
+            padding: 14px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .topnav .icon {
+            display: block;
+            cursor: pointer;
+            padding: 14px;
+        }
+
         #h {
-            margin-left: 20px; /* Adjust for smaller screens */
-            margin-top: 100px; /* Adjust vertical position */
+            margin-left: 20px;
+            margin-top: 80px;
+            text-align: center;
+            font-size: 24px;
+            position: relative;
+            bottom: auto;
+            left: auto;
+            transform: translateY(0);
+            color: #000000;
+            text-shadow: none;
+            transition: none;
         }
-        .picture {
-            display: none; /* Hide the fixed image on smaller screens */
-        }
+
         #p {
-            margin-top: 20px; /* Adjust vertical position */
-            margin-left: 20px; /* Adjust for smaller screens */
+            margin-top: 20px;
+            margin-left: 20px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .background-image {
+            background-image: url('./images/phone-background.jpg'); /* Replace with actual phone background image */
+            height: 100vh; /* Adjust height for smaller screens */
+            position: relative; /* Adjust position */
         }
     }
-    
-    @media (max-width: 480px) {
+
+    @media screen and (max-width: 480px) {
         #logo-text {
-            font-size: 16px; /* Reduce logo text size for smaller screens */
+            font-size: 16px;
         }
-        .navtags {
-            flex-direction: column; /* Stack navtags vertically */
-            justify-content: center; /* Center align navtags */
-            align-items: center; /* Center align navtags */
-            margin-left: 0; /* Reset margin for centering */
-        }
+
         #h {
-            margin-left: 10px; /* Adjust for smaller screens */
-            margin-top: 50px; /* Adjust vertical position */
+            margin-left: 10px;
+            margin-top: 60px;
+            font-size: 20px;
         }
+
         #p {
-            margin-left: 10px; /* Adjust for smaller screens */
+            margin-left: 10px;
+            padding: 10px;
+        }
+
+        .picture img {
+            width: 200px; /* Adjust size for smaller screens */
+            max-width: 100%; /* Ensure it doesn't exceed screen width */
+        }
+
+        .background-image {
+            background-image: url('./images/phone-background.jpg'); /* Replace with actual phone background image */
+            height: 100vh; /* Adjust height for smaller screens */
+            position: relative; /* Adjust position */
         }
     }
 </style>
 </head>
 <body>
-<div class="topnav">
+<div class="topnav" id="myTopnav">
     <div id="logo">
         <img src="./images/innovex.png" alt="Logo">
         <div id="logo-text"><span id="I">I</span><span id="nno">nno</span><span id="vex">vex</span><span id="Hub">Hub</span></div>
     </div>
-    <div class="navtags">
-        <a class="active">Home</a>
-        <a href="./About us.html">About Us</a>
-        <a href="./ourapproach.html">Our Approach</a>
-        <a href="./joinus.html">Join Us</a>
+    <div class="navtags" id="navtags">
+        <a class="active" href="#">Home</a>
+        <a href="#">About Us</a>
+        <a href="#">Our Approach</a>
+        <a href="#">Join Us</a>
     </div>
+    <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+        &#9776;
+    </a>
 </div>
 
 <div class="picture">
@@ -197,7 +291,7 @@
 
 <div class="background-image"></div>
 
-<div id="h">
+<div id="h" class="show">
     <h1>Hello!</h1>
     <h1>Innovation starts here</h1>
 </div>
@@ -207,17 +301,12 @@
 </div>
 
 <script>
-    // JavaScript for background image opacity on scroll
-    document.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY;
-        const halfWindowHeight = window.innerHeight / 2;
-        
-        if (scrollPosition > halfWindowHeight) {
-            document.body.classList.add('scrolled');
-        } else {
-            document.body.classList.remove('scrolled');
-        }
-    });
-</script>
-</body>
-</html>
+function toggleMenu() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+document.addEventListener('scroll', () =>
